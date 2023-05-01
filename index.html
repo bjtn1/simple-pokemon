@@ -6,28 +6,150 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="style.css" rel="stylesheet" />
+  <script src="script.js"></script>
 </head>
 
 <body>
-  <script src="script.js"></script>
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
+  <header class="header">Rock Paper Scissors, Pokémon edition</header>
+  <div class="scoreboard_container">
+    <div class="player">
+      <div class="player_title">You</div>
+      <div class="player_score">1</div>
+    </div>
+
+    <div class="player">
+      <div class="player_title">Computer</div>
+      <div class="player_score">1</div>
+    </div>
+  </div>
+
+  <div class="type_roster">
+    <div id="bug" class="selection_box">
+      <div class="type_img">
+        <img src="pokemon_type_icons___vector_by_lugia_sea_dedsu40/Pokemon_Type_Icon_Bug.svg" />
+      </div>
+      <div class="type_text">Bug</div>
+    </div>
+
+    <div id="dark" class="selection_box">
+      <div class="type_img">
+        <img src="pokemon_type_icons___vector_by_lugia_sea_dedsu40/Pokemon_Type_Icon_Dark.svg" />
+      </div>
+      <div class="type_text">Dark</div>
+    </div>
+
+    <div id="dragon" class="selection_box">
+      <div class="type_img">
+        <img src="pokemon_type_icons___vector_by_lugia_sea_dedsu40/Pokemon_Type_Icon_Dragon.svg" />
+      </div>
+      <div class="type_text">Dragon</div>
+    </div>
+
+    <div id="electric" class="selection_box">
+      <div class="type_img">
+        <img src="pokemon_type_icons___vector_by_lugia_sea_dedsu40/Pokemon_Type_Icon_Electric.svg" />
+      </div>
+      <div class="type_text">Electric</div>
+    </div>
+
+    <div id="fairy" class="selection_box">
+      <div class="type_img">
+        <img src="pokemon_type_icons___vector_by_lugia_sea_dedsu40/Pokemon_Type_Icon_Fairy.svg" />
+      </div>
+      <div class="type_text">Fairy</div>
+    </div>
+
+    <div id="fighting" class="selection_box">
+      <div class="type_img">
+        <img src="pokemon_type_icons___vector_by_lugia_sea_dedsu40/Pokemon_Type_Icon_Fighting.svg" />
+      </div>
+      <div class="type_text">Fighting</div>
+    </div>
+
+    <div id="fire" class="selection_box">
+      <div class="type_img">
+        <img src="pokemon_type_icons___vector_by_lugia_sea_dedsu40/Pokemon_Type_Icon_Fire.svg" />
+      </div>
+      <div class="type_text">Fire</div>
+    </div>
+
+    <div id="flying" class="selection_box">
+      <div class="type_img">
+        <img src="pokemon_type_icons___vector_by_lugia_sea_dedsu40/Pokemon_Type_Icon_Flying.svg" />
+      </div>
+      <div class="type_text">Flying</div>
+    </div>
+
+    <div id="ghost" class="selection_box">
+      <div class="type_img">
+        <img src="pokemon_type_icons___vector_by_lugia_sea_dedsu40/Pokemon_Type_Icon_Ghost.svg" />
+      </div>
+      <div class="type_text">Ghost</div>
+    </div>
+
+    <div id="grass" class="selection_box">
+      <div class="type_img">
+        <img src="pokemon_type_icons___vector_by_lugia_sea_dedsu40/Pokemon_Type_Icon_Grass.svg" />
+      </div>
+      <div class="type_text">Grass</div>
+    </div>
+
+    <div id="ground" class="selection_box">
+      <div class="type_img">
+        <img src="pokemon_type_icons___vector_by_lugia_sea_dedsu40/Pokemon_Type_Icon_Ground.svg" />
+      </div>
+      <div class="type_text">Ground</div>
+    </div>
+
+    <div id="ice" class="selection_box">
+      <div class="type_img">
+        <img src="pokemon_type_icons___vector_by_lugia_sea_dedsu40/Pokemon_Type_Icon_Ice.svg" />
+      </div>
+      <div class="type_text">Ice</div>
+    </div>
+
+    <div id="normal" class="selection_box">
+      <div class="type_img">
+        <img src="pokemon_type_icons___vector_by_lugia_sea_dedsu40/Pokemon_Type_Icon_Normal.svg" />
+      </div>
+      <div class="type_text">Normal</div>
+    </div>
+
+    <div id="poison" class="selection_box">
+      <div class="type_img">
+        <img src="pokemon_type_icons___vector_by_lugia_sea_dedsu40/Pokemon_Type_Icon_Poison.svg" />
+      </div>
+      <div class="type_text">Poison</div>
+    </div>
+
+    <div id="psychic" class="selection_box">
+      <div class="type_img">
+        <img src="pokemon_type_icons___vector_by_lugia_sea_dedsu40/Pokemon_Type_Icon_Psychic.svg" />
+      </div>
+      <div class="type_text">Psychic</div>
+    </div>
+
+    <div id="rock" class="selection_box">
+      <div class="type_img">
+        <img src="pokemon_type_icons___vector_by_lugia_sea_dedsu40/Pokemon_Type_Icon_Rock.svg" />
+      </div>
+      <div class="type_text">Rock</div>
+    </div>
+
+    <div id="steel" class="selection_box">
+      <div class="type_img">
+        <img src="pokemon_type_icons___vector_by_lugia_sea_dedsu40/Pokemon_Type_Icon_Steel.svg" />
+      </div>
+      <div class="type_text">Steel</div>
+    </div>
+
+    <div id="water" class="selection_box">
+      <div class="type_img">
+        <img src="pokemon_type_icons___vector_by_lugia_sea_dedsu40/Pokemon_Type_Icon_Water.svg" />
+      </div>
+      <div class="type_text">Water</div>
+    </div>
+  </div>
 </body>
 
 </html>

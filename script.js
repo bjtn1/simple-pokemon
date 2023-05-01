@@ -9,6 +9,7 @@
 // No effect and not very effective = 0
 // Normal = 1
 // Super effective = 2
+//
 
 const effectiveness_chart = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0], // Normal
@@ -73,23 +74,45 @@ const num_to_types = {
   17: "Fairy",
 };
 
-let computer_choice = Math.floor(Math.random() * 18);
-let user_choice = Math.floor(Math.random() * 18);
+let user_type;
+let user_choice;
+let user_dmg;
+let pc_choice;
+let pc_dmg;
+let player1;
+let player2;
 
-let users_dmg = effectiveness_chart[user_choice][computer_choice];
-let pc_dmg = effectiveness_chart[computer_choice][user_choice];
-
-let player1 = num_to_types[user_choice];
-let player2 = num_to_types[computer_choice];
-
-console.log(player1 + " vs. " + player2);
-
-if (users_dmg > pc_dmg) {
-  console.log(player1 + " wins");
-} else if (pc_dmg > users_dmg) {
-  console.log(player2 + " wins");
-} else if (users_dmg === pc_dmg) {
-  console.log("Tie");
-} else {
-  console.log("I don't know bro LMAO");
+function capitalize(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
+
+function get_computer_choice() {
+  return Math.floor(Math.random() * 18);
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  const selection_boxes = document.querySelectorAll(".selection_box");
+  selection_boxes.forEach((div) => {
+    div.addEventListener("click", function() {
+      pc_choice = get_computer_choice();
+      user_type = capitalize(this.id);
+      user_choice = types_to_num[user_type];
+      user_dmg = effectiveness_chart[user_choice][pc_choice];
+      pc_dmg = effectiveness_chart[pc_choice][user_choice];
+      player1 = num_to_types[user_choice];
+      player2 = num_to_types[pc_choice];
+
+      console.log(player1 + " vs. " + player2);
+
+      if (user_dmg > pc_dmg) {
+        console.log(player1 + " wins");
+      } else if (pc_dmg > user_dmg) {
+        console.log(player2 + " wins");
+      } else if (user_dmg === pc_dmg) {
+        console.log("Tie");
+      } else {
+        console.log("I don't know bro LMAO");
+      }
+    });
+  });
+});

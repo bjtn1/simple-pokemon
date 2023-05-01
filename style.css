@@ -3,20 +3,66 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
+
   display: flex;
-  flex-direction: row;
-}
-.box {
-  border: 3px solid #004643;
-  cursor: pointer;
-  border-radius: 25px;
-  width: 200px;
-  height: 200px;
-  margin: 20px 0;
-  transition-duration: 0.4s;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.box:hover {
+.header {
+  display: flex;
+}
+
+.scoreboard_container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.player_title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player_score {
+}
+
+.pc_title {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.type_roster {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.selection_box {
+  display: flex;
+  flex-direction: column;
+
+  cursor: pointer;
+  border-radius: 25px;
+  width: 100px;
+  margin: 3px;
+  transition-duration: 0.4s;
+  padding: 10px;
+}
+
+.type_text {
+  align-self: center;
+}
+
+.selection_box:hover {
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
