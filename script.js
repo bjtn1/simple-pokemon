@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 // We can have a table of the types and how much dmg they do to all other types.
 // Something like types["Water"][0] would return how much dmg water does to Normal types (1 in this case), and types["Water"][2] would
 // return how much dmg water does to fire types (2 in this case) etc
@@ -9,7 +7,6 @@
 // No effect and not very effective = 0
 // Normal = 1
 // Super effective = 2
-//
 
 const effectiveness_chart = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0], // Normal
@@ -74,45 +71,203 @@ const num_to_types = {
   17: "Fairy",
 };
 
-let user_type;
-let user_choice;
-let user_dmg;
-let pc_choice;
-let pc_dmg;
-let player1;
-let player2;
-
 function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
 
-function get_computer_choice() {
+function get_pc_choice() {
   return Math.floor(Math.random() * 18);
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-  const selection_boxes = document.querySelectorAll(".selection_box");
-  selection_boxes.forEach((div) => {
-    div.addEventListener("click", function() {
-      pc_choice = get_computer_choice();
-      user_type = capitalize(this.id);
-      user_choice = types_to_num[user_type];
-      user_dmg = effectiveness_chart[user_choice][pc_choice];
-      pc_dmg = effectiveness_chart[pc_choice][user_choice];
-      player1 = num_to_types[user_choice];
-      player2 = num_to_types[pc_choice];
+function validate_user_choice(user_choice) {
+  // Make sure the user inputs a number
+  while (isNaN(user_choice)) {
+    user_choice = prompt(
+    user_choice + " is not a number\n" +
+      "Please enter a number representing a Pokemon type:\n" +
+      "0: Normal\n" +
+      "1: Fire\n" +
+      "2: Water\n" +
+      "3: Electric\n" +
+      "4: Grass\n" +
+      "5: Ice\n" +
+      "6: Fighting\n" +
+      "7: Poison\n" +
+      "8: Ground\n" +
+      "9: Flying\n" +
+      "10: Psychic\n" +
+      "11: Bug\n" +
+      "12: Rock\n" +
+      "13: Ghost\n" +
+      "14: Dragon\n" +
+      "15: Dark\n" +
+      "16: Steel\n" +
+      "17: Fairy"
+    );
+  }
 
-      console.log(player1 + " vs. " + player2);
+  // Make sure user_choice is within range
+  while (user_choice < 0 || user_choice > 17) {
+    user_choice = prompt(
+    user_choice + " is not a valid number (not within range 0-17 inclusive)\n" +
+      "Please enter a number representing a Pokemon type:\n" +
+      "0: Normal\n" +
+      "1: Fire\n" +
+      "2: Water\n" +
+      "3: Electric\n" +
+      "4: Grass\n" +
+      "5: Ice\n" +
+      "6: Fighting\n" +
+      "7: Poison\n" +
+      "8: Ground\n" +
+      "9: Flying\n" +
+      "10: Psychic\n" +
+      "11: Bug\n" +
+      "12: Rock\n" +
+      "13: Ghost\n" +
+      "14: Dragon\n" +
+      "15: Dark\n" +
+      "16: Steel\n" +
+      "17: Fairy"
+    );
+  }
+  return user_choice;
+}
 
-      if (user_dmg > pc_dmg) {
-        console.log(player1 + " wins");
-      } else if (pc_dmg > user_dmg) {
-        console.log(player2 + " wins");
-      } else if (user_dmg === pc_dmg) {
-        console.log("Tie");
-      } else {
-        console.log("I don't know bro LMAO");
-      }
-    });
-  });
-});
+function play_round(user_choice, pc_choice) {
+  let user_dmg = effectiveness_chart[user_choice][pc_choice];
+  let pc_dmg = effectiveness_chart[pc_choice][user_choice];
+
+  // If it's a tie, replay the round
+  while(user_dmg === pc_dmg) {
+    user_choice = prompt(
+      "Tie\n" +
+        "Enter a number representing a Pokemon type:\n" +
+        "0: Normal\n" +
+        "1: Fire\n" +
+        "2: Water\n" +
+        "3: Electric\n" +
+        "4: Grass\n" +
+        "5: Ice\n" +
+        "6: Fighting\n" +
+        "7: Poison\n" +
+        "8: Ground\n" +
+        "9: Flying\n" +
+        "10: Psychic\n" +
+        "11: Bug\n" +
+        "12: Rock\n" +
+        "13: Ghost\n" +
+        "14: Dragon\n" +
+        "15: Dark\n" +
+        "16: Steel\n" +
+        "17: Fairy"
+    );
+
+    user_choice = validate_user_choice(user_choice)
+
+    pc_choice = get_pc_choice()
+
+    user_dmg = effectiveness_chart[user_choice][pc_choice];
+    pc_dmg = effectiveness_chart[pc_choice][user_choice];
+  }
+
+  let user = num_to_types[user_choice];
+  let pc = num_to_types[pc_choice];
+
+  console.log("User" + " (" + user + ")" + " vs. " + "PC" + " (" + pc + ")");
+
+  if (user_dmg > pc_dmg) {
+    return `User (${num_to_types[user_choice]})`;
+
+  } else if (pc_dmg > user_dmg) {
+    return `PC (${num_to_types[pc_choice]})`;
+
+  } else {
+    console.log("I don't know bro LMAO");
+    return null;
+  }
+}
+
+function game() {
+  let user_choice = prompt(
+    "Enter a number representing a Pokemon type:\n" +
+      "0: Normal\n" +
+      "1: Fire\n" +
+      "2: Water\n" +
+      "3: Electric\n" +
+      "4: Grass\n" +
+      "5: Ice\n" +
+      "6: Fighting\n" +
+      "7: Poison\n" +
+      "8: Ground\n" +
+      "9: Flying\n" +
+      "10: Psychic\n" +
+      "11: Bug\n" +
+      "12: Rock\n" +
+      "13: Ghost\n" +
+      "14: Dragon\n" +
+      "15: Dark\n" +
+      "16: Steel\n" +
+      "17: Fairy"
+  );
+
+  let pc_choice = get_pc_choice();
+
+  user_choice = validate_user_choice(user_choice);
+
+  let winner = play_round(user_choice, pc_choice);
+  console.log(winner + " wins");
+}
+
+function main() {
+  let again;
+
+  do {
+    for (let i = 0; i < 5; i++) {
+      game()
+    }
+    again = prompt(
+      "Play again? (Y/N)"
+    );
+
+    again = again.toUpperCase().charAt(0);
+
+    while (again !== "Y" && again !== "N") {
+      again = prompt(
+        `Not a valid choice.\nPlay again? (Y/N)`
+      );
+
+      again = again.toUpperCase().charAt(0);
+    }
+  } while (again === "Y");
+}
+
+main()
+
+
+// document.addEventListener("DOMContentLoaded", function() {
+//   const selection_boxes = document.querySelectorAll(".selection_box");
+//   selection_boxes.forEach((div) => {
+//     div.addEventListener("click", function() {
+//       pc_choice = get_computer_choice();
+//       user_type = capitalize(this.id);
+//       user_choice = types_to_num[user_type];
+//       user_dmg = effectiveness_chart[user_choice][pc_choice];
+//       pc_dmg = effectiveness_chart[pc_choice][user_choice];
+//       player1 = num_to_types[user_choice];
+//       player2 = num_to_types[pc_choice];
+//
+//       console.log(player1 + " vs. " + player2);
+//
+//       if (user_dmg > pc_dmg) {
+//         console.log(player1 + " wins");
+//       } else if (pc_dmg > user_dmg) {
+//         console.log(player2 + " wins");
+//       } else if (user_dmg === pc_dmg) {
+//         console.log("Tie");
+//       } else {
+//         console.log("I don't know bro LMAO");
+//       }
+//     });
+//   });
+// });
