@@ -1,68 +1,91 @@
+:root {
+  /* Tokyonight-night theme */
+  --black: #16161e;
+  --search-bg: rgba(255, 255, 255, 0.08);
+  --white: #c8d3f5;
+  --white-50: #c8d3f580;
+  --blue: #82aaff;
+  --cyan: #86e1fc;
+  --purple: #fca7ea;
+  --magenta: #c099ff;
+  --orange: #ff966c;
+  --yellow: #ffc777;
+  --green: #c3e88d;
+  --red: #ff757f;
+  --teal: #4fd6be;
+}
+
 body {
-  background-color: #f7f3e3;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  background-color: var(--black);
+  color: var(--white);
 }
 
-.header {
-  display: flex;
-}
-
-.scoreboard_container {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.player {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.player_title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.player_score {
-}
-
-.pc_title {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-}
-
-.type_roster {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.selection_box {
-  display: flex;
-  flex-direction: column;
-
-  cursor: pointer;
-  border-radius: 25px;
-  width: 100px;
-  margin: 3px;
-  transition-duration: 0.4s;
-  padding: 10px;
-}
-
-.type_text {
-  align-self: center;
-}
-
-.selection_box:hover {
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
-}
+/* body { */
+/*   background-color: var(--black); */
+/*   color: var(--white); */
+/*   height: 100vh; */
+/*   margin: 0; */
+/*   padding: 0; */
+/**/
+/*   display: flex; */
+/*   flex-direction: column; */
+/*   justify-content: space-between; */
+/* } */
+/**/
+/* .header { */
+/*   display: flex; */
+/* } */
+/**/
+/* .scoreboard_container { */
+/*   display: flex; */
+/*   justify-content: space-evenly; */
+/* } */
+/**/
+/* .player { */
+/*   display: flex; */
+/*   flex-direction: column; */
+/*   justify-content: center; */
+/*   align-items: center; */
+/* } */
+/**/
+/* .player_title { */
+/*   display: flex; */
+/*   justify-content: center; */
+/*   align-items: center; */
+/* } */
+/**/
+/* .player_score { */
+/* } */
+/**/
+/* .pc_title { */
+/*   display: flex; */
+/*   flex-direction: column; */
+/*   align-content: center; */
+/* } */
+/**/
+/* .type_roster { */
+/*   display: flex; */
+/*   flex-wrap: wrap; */
+/*   justify-content: center; */
+/* } */
+/**/
+/* .selection_box { */
+/*   display: flex; */
+/*   flex-direction: column; */
+/**/
+/*   cursor: pointer; */
+/*   border-radius: 25px; */
+/*   width: 100px; */
+/*   margin: 3px; */
+/*   transition-duration: 0.4s; */
+/*   padding: 10px; */
+/* } */
+/**/
+/* .type_text { */
+/*   align-self: center; */
+/* } */
+/**/
+/* .selection_box:hover { */
+/*   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), */
+/*     0 17px 50px 0 rgba(0, 0, 0, 0.19); */
+/* } */

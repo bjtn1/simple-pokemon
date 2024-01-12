@@ -75,101 +75,18 @@ function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
 
+// Returns int from 0-17 inclusive
 function get_pc_choice() {
   return Math.floor(Math.random() * 18);
 }
 
-function validate_user_choice(user_choice) {
-  // Make sure the user inputs a number
-  while (isNaN(user_choice)) {
-    user_choice = prompt(
-    user_choice + " is not a number\n" +
-      "Please enter a number representing a Pokemon type:\n" +
-      "0: Normal\n" +
-      "1: Fire\n" +
-      "2: Water\n" +
-      "3: Electric\n" +
-      "4: Grass\n" +
-      "5: Ice\n" +
-      "6: Fighting\n" +
-      "7: Poison\n" +
-      "8: Ground\n" +
-      "9: Flying\n" +
-      "10: Psychic\n" +
-      "11: Bug\n" +
-      "12: Rock\n" +
-      "13: Ghost\n" +
-      "14: Dragon\n" +
-      "15: Dark\n" +
-      "16: Steel\n" +
-      "17: Fairy"
-    );
-  }
-
-  // Make sure user_choice is within range
-  while (user_choice < 0 || user_choice > 17) {
-    user_choice = prompt(
-    user_choice + " is not a valid number (not within range 0-17 inclusive)\n" +
-      "Please enter a number representing a Pokemon type:\n" +
-      "0: Normal\n" +
-      "1: Fire\n" +
-      "2: Water\n" +
-      "3: Electric\n" +
-      "4: Grass\n" +
-      "5: Ice\n" +
-      "6: Fighting\n" +
-      "7: Poison\n" +
-      "8: Ground\n" +
-      "9: Flying\n" +
-      "10: Psychic\n" +
-      "11: Bug\n" +
-      "12: Rock\n" +
-      "13: Ghost\n" +
-      "14: Dragon\n" +
-      "15: Dark\n" +
-      "16: Steel\n" +
-      "17: Fairy"
-    );
-  }
-  return user_choice;
-}
-
+/*
+ * @user_choice: int between 0-17 inclusive
+ * @pc_choice: int between 0-17 inclusive
+ * */
 function play_round(user_choice, pc_choice) {
   let user_dmg = effectiveness_chart[user_choice][pc_choice];
   let pc_dmg = effectiveness_chart[pc_choice][user_choice];
-
-  // If it's a tie, replay the round
-  while(user_dmg === pc_dmg) {
-    user_choice = prompt(
-      "Tie\n" +
-        "Enter a number representing a Pokemon type:\n" +
-        "0: Normal\n" +
-        "1: Fire\n" +
-        "2: Water\n" +
-        "3: Electric\n" +
-        "4: Grass\n" +
-        "5: Ice\n" +
-        "6: Fighting\n" +
-        "7: Poison\n" +
-        "8: Ground\n" +
-        "9: Flying\n" +
-        "10: Psychic\n" +
-        "11: Bug\n" +
-        "12: Rock\n" +
-        "13: Ghost\n" +
-        "14: Dragon\n" +
-        "15: Dark\n" +
-        "16: Steel\n" +
-        "17: Fairy"
-    );
-
-    user_choice = validate_user_choice(user_choice)
-
-    pc_choice = get_pc_choice()
-
-    user_dmg = effectiveness_chart[user_choice][pc_choice];
-    pc_dmg = effectiveness_chart[pc_choice][user_choice];
-  }
 
   let user = num_to_types[user_choice];
   let pc = num_to_types[pc_choice];
@@ -177,40 +94,17 @@ function play_round(user_choice, pc_choice) {
   console.log("User" + " (" + user + ")" + " vs. " + "PC" + " (" + pc + ")");
 
   if (user_dmg > pc_dmg) {
-    return `User (${num_to_types[user_choice]})`;
+    return `User (${num_to_types[user_choice]}) wins`;
 
   } else if (pc_dmg > user_dmg) {
-    return `PC (${num_to_types[pc_choice]})`;
+    return `PC (${num_to_types[pc_choice]}) wins`;
 
   } else {
-    console.log("I don't know bro LMAO");
-    return null;
+    return "Tie";
   }
 }
 
 function game() {
-  let user_choice = prompt(
-    "Enter a number representing a Pokemon type:\n" +
-      "0: Normal\n" +
-      "1: Fire\n" +
-      "2: Water\n" +
-      "3: Electric\n" +
-      "4: Grass\n" +
-      "5: Ice\n" +
-      "6: Fighting\n" +
-      "7: Poison\n" +
-      "8: Ground\n" +
-      "9: Flying\n" +
-      "10: Psychic\n" +
-      "11: Bug\n" +
-      "12: Rock\n" +
-      "13: Ghost\n" +
-      "14: Dragon\n" +
-      "15: Dark\n" +
-      "16: Steel\n" +
-      "17: Fairy"
-  );
-
   let pc_choice = get_pc_choice();
 
   user_choice = validate_user_choice(user_choice);
@@ -220,54 +114,17 @@ function game() {
 }
 
 function main() {
-  let again;
+  // Add event listener to all choice buttons
+  let choice_buttons = document.querySelectorAll("button.choice");
 
-  do {
-    for (let i = 0; i < 5; i++) {
-      game()
-    }
-    again = prompt(
-      "Play again? (Y/N)"
-    );
-
-    again = again.toUpperCase().charAt(0);
-
-    while (again !== "Y" && again !== "N") {
-      again = prompt(
-        `Not a valid choice.\nPlay again? (Y/N)`
-      );
-
-      again = again.toUpperCase().charAt(0);
-    }
-  } while (again === "Y");
+  choice_buttons.forEach((choice_button) => {
+    choice_button.addEventListener("click", () => {
+      let user_choice = types_to_num[choice_button.textContent];
+      let pc_choice = get_pc_choice();
+      let winner = play_round(user_choice, pc_choice);
+      console.log(`${winner}`);
+    });
+  });
 }
 
 main()
-
-
-// document.addEventListener("DOMContentLoaded", function() {
-//   const selection_boxes = document.querySelectorAll(".selection_box");
-//   selection_boxes.forEach((div) => {
-//     div.addEventListener("click", function() {
-//       pc_choice = get_computer_choice();
-//       user_type = capitalize(this.id);
-//       user_choice = types_to_num[user_type];
-//       user_dmg = effectiveness_chart[user_choice][pc_choice];
-//       pc_dmg = effectiveness_chart[pc_choice][user_choice];
-//       player1 = num_to_types[user_choice];
-//       player2 = num_to_types[pc_choice];
-//
-//       console.log(player1 + " vs. " + player2);
-//
-//       if (user_dmg > pc_dmg) {
-//         console.log(player1 + " wins");
-//       } else if (pc_dmg > user_dmg) {
-//         console.log(player2 + " wins");
-//       } else if (user_dmg === pc_dmg) {
-//         console.log("Tie");
-//       } else {
-//         console.log("I don't know bro LMAO");
-//       }
-//     });
-//   });
-// });
