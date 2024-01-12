@@ -91,7 +91,7 @@ function play_round(user_choice, pc_choice) {
   let user = num_to_types[user_choice];
   let pc = num_to_types[pc_choice];
 
-  console.log("User" + " (" + user + ")" + " vs. " + "PC" + " (" + pc + ")");
+  console.log(`User (${user}) vs. PC (${pc})`);
 
   if (user_dmg > pc_dmg) {
     return `User (${num_to_types[user_choice]}) wins`;
