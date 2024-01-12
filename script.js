@@ -114,8 +114,8 @@ function game() {
 }
 
 function main() {
-  // Add event listener to all choice buttons
-  let choice_buttons = document.querySelectorAll("button.choice");
+  const choice_buttons = document.querySelectorAll("button.choice");
+  const h1 = document.querySelector("h1");
 
   choice_buttons.forEach((choice_button) => {
     choice_button.addEventListener("click", () => {
@@ -123,6 +123,8 @@ function main() {
       let pc_choice = get_pc_choice();
       let winner = play_round(user_choice, pc_choice);
       console.log(`${winner}`);
+
+      h1.textContent = winner;
     });
   });
 }
