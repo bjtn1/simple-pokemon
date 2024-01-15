@@ -71,10 +71,6 @@ const num_to_types = {
   17: "Fairy",
 };
 
-function capitalize(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-}
-
 // Returns int from 0-17 inclusive
 function get_pc_choice() {
   return Math.floor(Math.random() * 18);
@@ -88,9 +84,6 @@ function play_round(user_choice, pc_choice) {
   let user_dmg = effectiveness_chart[user_choice][pc_choice];
   let pc_dmg = effectiveness_chart[pc_choice][user_choice];
 
-  let user = num_to_types[user_choice];
-  let pc = num_to_types[pc_choice];
-
   if (user_dmg > pc_dmg) {
     return `User wins`;
 
@@ -103,14 +96,6 @@ function play_round(user_choice, pc_choice) {
 }
 
 function game() {
-  let pc_choice = get_pc_choice();
-
-  user_choice = validate_user_choice(user_choice);
-
-  let winner = play_round(user_choice, pc_choice);
-}
-
-function main() {
   const choice_buttons = document.querySelectorAll("button.choice");
 
   const h3_user_vs_pc = document.querySelector("h3.user-vs-pc");
@@ -122,6 +107,8 @@ function main() {
   // The `+` operator converts the string to an int
   let user_points = +h2_user_points.textContent;
   let pc_points = +h2_pc_points.textContent;
+
+  console.log(user_points);
 
   choice_buttons.forEach((choice_button) => {
     choice_button.addEventListener("click", () => {
@@ -143,8 +130,19 @@ function main() {
       h3_winner.textContent = winner;
       h2_user_points.textContent = user_points;
       h2_pc_points.textContent = pc_points;
+
+      // TODO
+      // How to stop once 5 points have been reached
+      if (user_points === 5 || pc_points === 5) {
+        return;
+      }
     });
   });
+
+}
+
+function main() {
+  game();
 }
 
 main()

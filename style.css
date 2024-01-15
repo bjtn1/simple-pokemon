@@ -21,7 +21,7 @@ body {
   color: var(--white);
 }
 
-div.scoreboard {
+.scoreboard {
   display: flex;
   justify-content: center;
 }
