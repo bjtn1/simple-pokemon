@@ -91,13 +91,11 @@ function play_round(user_choice, pc_choice) {
   let user = num_to_types[user_choice];
   let pc = num_to_types[pc_choice];
 
-  console.log(`User (${user}) vs. PC (${pc})`);
-
   if (user_dmg > pc_dmg) {
-    return `User (${num_to_types[user_choice]}) wins`;
+    return `User wins`;
 
   } else if (pc_dmg > user_dmg) {
-    return `PC (${num_to_types[pc_choice]}) wins`;
+    return `PC wins`;
 
   } else {
     return "Tie";
@@ -114,8 +112,16 @@ function game() {
 
 function main() {
   const choice_buttons = document.querySelectorAll("button.choice");
+
   const h3_user_vs_pc = document.querySelector("h3.user-vs-pc");
   const h3_winner = document.querySelector("h3.winner");
+
+  const h2_user_points = document.querySelector(".user-points");
+  const h2_pc_points = document.querySelector(".pc-points");
+
+  // The `+` operator converts the string to an int
+  let user_points = +h2_user_points.textContent;
+  let pc_points = +h2_pc_points.textContent;
 
   choice_buttons.forEach((choice_button) => {
     choice_button.addEventListener("click", () => {
@@ -127,8 +133,16 @@ function main() {
 
       let winner = play_round(user_choice, pc_choice);
 
+      if (winner.startsWith("User")) {
+        user_points++;
+      } else if (winner.startsWith("PC")) {
+        pc_points++;
+      } 
+
       h3_user_vs_pc.textContent = `${user_type} vs. ${pc_type}`;
       h3_winner.textContent = winner;
+      h2_user_points.textContent = user_points;
+      h2_pc_points.textContent = pc_points;
     });
   });
 }

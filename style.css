@@ -21,6 +21,17 @@ body {
   color: var(--white);
 }
 
+div.scoreboard {
+  display: flex;
+  justify-content: center;
+}
+
+.dash {
+  padding: 0px 10px;
+}
+
+
+
 /* body { */
 /*   background-color: var(--black); */
 /*   color: var(--white); */
