@@ -110,21 +110,25 @@ function game() {
   user_choice = validate_user_choice(user_choice);
 
   let winner = play_round(user_choice, pc_choice);
-  console.log(winner + " wins");
 }
 
 function main() {
   const choice_buttons = document.querySelectorAll("button.choice");
-  const h1 = document.querySelector("h1");
+  const h3_user_vs_pc = document.querySelector("h3.user-vs-pc");
+  const h3_winner = document.querySelector("h3.winner");
 
   choice_buttons.forEach((choice_button) => {
     choice_button.addEventListener("click", () => {
       let user_choice = types_to_num[choice_button.textContent];
-      let pc_choice = get_pc_choice();
-      let winner = play_round(user_choice, pc_choice);
-      console.log(`${winner}`);
+      let user_type = choice_button.textContent;
 
-      h1.textContent = winner;
+      let pc_choice = get_pc_choice();
+      let pc_type = num_to_types[pc_choice];
+
+      let winner = play_round(user_choice, pc_choice);
+
+      h3_user_vs_pc.textContent = `${user_type} vs. ${pc_type}`;
+      h3_winner.textContent = winner;
     });
   });
 }
