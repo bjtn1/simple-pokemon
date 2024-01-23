@@ -108,10 +108,14 @@ function game() {
   let user_points = +h2_user_points.textContent;
   let pc_points = +h2_pc_points.textContent;
 
-  console.log(user_points);
+  let game_over = false;
 
   choice_buttons.forEach((choice_button) => {
     choice_button.addEventListener("click", () => {
+      if (game_over) {
+        return;
+      }
+
       let user_choice = types_to_num[choice_button.textContent];
       let user_type = choice_button.textContent;
 
@@ -131,10 +135,12 @@ function game() {
       h2_user_points.textContent = user_points;
       h2_pc_points.textContent = pc_points;
 
-      // TODO
-      // How to stop once 5 points have been reached
-      if (user_points === 5 || pc_points === 5) {
-        return;
+      if (user_points === 5) {
+        h3_winner.textContent = `User wins this battle!`;
+        game_over = true;
+      } else if (pc_points === 5) {
+        h3_winner.textContent = `PC wins this battle!`;
+        game_over = true;
       }
     });
   });
